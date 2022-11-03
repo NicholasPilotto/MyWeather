@@ -17,6 +17,7 @@
 		50786F012907236700E10BF5 /* MyWeatherUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50786F002907236700E10BF5 /* MyWeatherUITestsLaunchTests.swift */; };
 		50F716D52914588F00FBBA65 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F716D42914588F00FBBA65 /* WeatherModel.swift */; };
 		50F716D92914664900FBBA65 /* URLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F716D82914664900FBBA65 /* URLBuilder.swift */; };
+		50F716D729145B8000FBBA65 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F716D629145B8000FBBA65 /* Service.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		50786F002907236700E10BF5 /* MyWeatherUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWeatherUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		50F716D42914588F00FBBA65 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		50F716D82914664900FBBA65 /* URLBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLBuilder.swift; sourceTree = "<group>"; };
+		50F716D629145B8000FBBA65 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +168,7 @@
 		50F716D2291453D800FBBA65 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				50F716D629145B8000FBBA65 /* Service.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -311,6 +314,7 @@
 				50F716D92914664900FBBA65 /* URLBuilder.swift in Sources */,
 				50786EE22907236400E10BF5 /* ViewController.swift in Sources */,
 				50786EDE2907236400E10BF5 /* AppDelegate.swift in Sources */,
+				50F716D729145B8000FBBA65 /* Service.swift in Sources */,
 				50F716D52914588F00FBBA65 /* WeatherModel.swift in Sources */,
 				50786EE02907236400E10BF5 /* SceneDelegate.swift in Sources */,
 			);
