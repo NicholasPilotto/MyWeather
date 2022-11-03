@@ -16,6 +16,7 @@
 		50786EFF2907236700E10BF5 /* MyWeatherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50786EFE2907236700E10BF5 /* MyWeatherUITests.swift */; };
 		50786F012907236700E10BF5 /* MyWeatherUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50786F002907236700E10BF5 /* MyWeatherUITestsLaunchTests.swift */; };
 		50F716D52914588F00FBBA65 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F716D42914588F00FBBA65 /* WeatherModel.swift */; };
+		50F716D92914664900FBBA65 /* URLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F716D82914664900FBBA65 /* URLBuilder.swift */; };
 		50F716D729145B8000FBBA65 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F716D629145B8000FBBA65 /* Service.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +51,7 @@
 		50786EFE2907236700E10BF5 /* MyWeatherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWeatherUITests.swift; sourceTree = "<group>"; };
 		50786F002907236700E10BF5 /* MyWeatherUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWeatherUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		50F716D42914588F00FBBA65 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
+		50F716D82914664900FBBA65 /* URLBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLBuilder.swift; sourceTree = "<group>"; };
 		50F716D629145B8000FBBA65 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -174,6 +176,7 @@
 		50F716D3291453EA00FBBA65 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				50F716D82914664900FBBA65 /* URLBuilder.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50F716D92914664900FBBA65 /* URLBuilder.swift in Sources */,
 				50786EE22907236400E10BF5 /* ViewController.swift in Sources */,
 				50786EDE2907236400E10BF5 /* AppDelegate.swift in Sources */,
 				50F716D729145B8000FBBA65 /* Service.swift in Sources */,
