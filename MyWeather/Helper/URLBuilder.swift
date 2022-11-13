@@ -20,32 +20,49 @@ public class URLBuilder {
     }
     
     public func latitude(latitude: Double) -> URLBuilder {
-        url.append("latitude=\(latitude)")
+        url.append("latitude=\(latitude)&")
         return self
     }
     
     public func longitude(longitude: Double) -> URLBuilder {
-        url.append("&longitude=\(longitude)")
+        url.append("longitude=\(longitude)&")
         return self
     }
 
     public func hourly(hourly: [String]) -> URLBuilder {
         let joinedHourly = hourly.joined(separator: ",")
-        url.append("&" + joinedHourly)
+        url.append(joinedHourly + "&")
+        return self
+    }
+    
+    public func daily(dayly: [String]) -> URLBuilder {
+        let joinedDayly = dayly.joined(separator: ",")
+        url.append(joinedDayly + "&")
+        return self
+    }
+    
+    public func currentWeather(current: Bool) -> URLBuilder {
+        url.append("\(current)&")
+        return self
+    }
+    
+    public func timezone(timezone: String) -> URLBuilder {
+        url.append(timezone + "&")
         return self
     }
     
     public func startDate(start: Date) -> URLBuilder {
-        url.append("&\(start)")
+        url.append("\(start)&")
         return self
     }
     
     public func endDate(end: Date) -> URLBuilder {
-        url.append("&\(end)")
+        url.append("\(end)&")
         return self
     }
     
     public func build() -> URL? {
+        url.removeLast()
         return URL(string: url)
     }
 }
