@@ -19,25 +19,30 @@ public class URLBuilder {
         url = urlAddress + urlVersion + urlOptions
     }
     
-    public func latitude(latitude: Double) {
+    public func latitude(latitude: Double) -> URLBuilder {
         url.append("latitude=\(latitude)")
+        return self
     }
     
-    public func longitude(longitude: Double) {
+    public func longitude(longitude: Double) -> URLBuilder {
         url.append("&longitude=\(longitude)")
+        return self
     }
-    
-    public func hourly(hourly: [String]) {
+
+    public func hourly(hourly: [String]) -> URLBuilder {
         let joinedHourly = hourly.joined(separator: ",")
         url.append("&" + joinedHourly)
+        return self
     }
     
-    public func startDate(start: Date) {
+    public func startDate(start: Date) -> URLBuilder {
         url.append("&\(start)")
+        return self
     }
     
-    public func endDate(end: Date) {
+    public func endDate(end: Date) -> URLBuilder {
         url.append("&\(end)")
+        return self
     }
     
     public func build() -> URL? {
