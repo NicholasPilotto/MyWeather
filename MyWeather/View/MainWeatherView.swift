@@ -14,33 +14,43 @@ class MainWeatherView: UIView {
     private let cityLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 30, weight: .bold)
-        label.tintColor = .white
+        label.textColor = .white
+        label.textAlignment = .center
+        label.text = "Città"
         return label
     }()
     
     private let weatherImage: UIImageView = {
         let image = UIImageView()
+        image.image = UIImage(named: "day-sunny-icon")?.withRenderingMode(.alwaysTemplate)
+        image.tintColor = .white
         return image
     }()
     
     private let temperatureLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 55, weight: .heavy)
-        label.tintColor = .white
+        label.textColor = .white
+        label.textAlignment = .center
+        label.text = "20"
         return label
     }()
     
     private let weatherLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 25, weight: .regular)
-        label.tintColor = .white
+        label.textColor = .white
+        label.textAlignment = .center
+        label.text = "Soleggiato"
         return label
     }()
     
     private let dateLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 15, weight: .regular)
-        label.tintColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0.8)
+        label.textColor = .white.withAlphaComponent(0.8)
+        label.textAlignment = .center
+        label.text = "Lunedì 9 novembre"
         return label
     }()
     
@@ -56,16 +66,32 @@ class MainWeatherView: UIView {
     private func setBackgroundColorGradient() {
         let colorTop = UIColor(rgb: 0x15C1F4).cgColor
         let colorBottom = UIColor(rgb: 0x1182FA).cgColor
-        
+
         self.gradientLayer.colors = [colorTop, colorBottom]
         self.gradientLayer.locations = [0.0, 1.0]
         self.gradientLayer.frame = self.bounds
-        
+
         self.layer.insertSublayer(gradientLayer, at: 0)
     }
     
     private func setupUI() {
         self.layer.cornerRadius = 30
+        self.clipsToBounds = true
         setBackgroundColorGradient()
+        addGraphicsObjects()
+    }
+    
+    private func addGraphicsObjects() {
+        cityLabel.frame = CGRect(x: 0, y: 18, width: self.frame.width, height: 30)
+        weatherImage.frame = CGRect(x: (self.frame.width / 2) - 75, y: 18 + 30 + 75, width: 150, height: 150)
+        temperatureLabel.frame = CGRect(x: 0, y: 18 + 30 + 75 + 150 + 45, width: self.frame.width, height: 60)
+        weatherLabel.frame = CGRect(x: 0, y: 18 + 30 + 75 + 150 + 45 + 60 + 5, width: self.frame.width, height: 30)
+        dateLabel.frame = CGRect(x: 0, y: 18 + 30 + 75 + 150 + 45 + 60 + 5 + 30, width: self.frame.width, height: 20)
+        
+        self.addSubview(cityLabel)
+        self.addSubview(weatherImage)
+        self.addSubview(temperatureLabel)
+        self.addSubview(weatherLabel)
+        self.addSubview(dateLabel)
     }
 }
