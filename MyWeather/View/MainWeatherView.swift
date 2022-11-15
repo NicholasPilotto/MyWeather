@@ -49,6 +49,15 @@ class MainWeatherView: UIView {
         return label
     }()
     
+    private let infoStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.distribution = .fillEqually
+        stack.alignment = .center
+        stack.spacing = 10
+        return stack
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -82,11 +91,24 @@ class MainWeatherView: UIView {
         temperatureLabel.frame = CGRect(x: 0, y: 18 + 30 + 75 + 150 + 45, width: self.frame.width, height: 60)
         weatherLabel.frame = CGRect(x: 0, y: 18 + 30 + 75 + 150 + 45 + 60 + 5, width: self.frame.width, height: 30)
         dateLabel.frame = CGRect(x: 0, y: 18 + 30 + 75 + 150 + 45 + 60 + 5 + 30, width: self.frame.width, height: 20)
+        infoStack.frame = CGRect(x: 10, y: self.bottom - 175, width: self.width - 20, height: 80)
+        addInfoView()
         
         self.addSubview(cityLabel)
         self.addSubview(weatherImage)
         self.addSubview(temperatureLabel)
         self.addSubview(weatherLabel)
         self.addSubview(dateLabel)
+        self.addSubview(infoStack)
+    }
+    
+    public func addInfoView() {
+        let windInfoView = ValueView()
+        let humidityInfoView = ValueView()
+        let rainInfoView = ValueView()
+        
+        infoStack.addArrangedSubview(windInfoView)
+        infoStack.addArrangedSubview(humidityInfoView)
+        infoStack.addArrangedSubview(rainInfoView)
     }
 }
