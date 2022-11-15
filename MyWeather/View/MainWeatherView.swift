@@ -16,13 +16,11 @@ class MainWeatherView: UIView {
         label.font = .systemFont(ofSize: 30, weight: .bold)
         label.textColor = .white
         label.textAlignment = .center
-        label.text = "Città"
         return label
     }()
     
     private let weatherImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "day-sunny-icon")?.withRenderingMode(.alwaysTemplate)
         image.tintColor = .white
         return image
     }()
@@ -32,7 +30,6 @@ class MainWeatherView: UIView {
         label.font = .systemFont(ofSize: 55, weight: .heavy)
         label.textColor = .white
         label.textAlignment = .center
-        label.text = "20"
         return label
     }()
     
@@ -41,7 +38,6 @@ class MainWeatherView: UIView {
         label.font = .systemFont(ofSize: 25, weight: .regular)
         label.textColor = .white
         label.textAlignment = .center
-        label.text = "Soleggiato"
         return label
     }()
     
@@ -50,7 +46,6 @@ class MainWeatherView: UIView {
         label.font = .systemFont(ofSize: 15, weight: .regular)
         label.textColor = .white.withAlphaComponent(0.8)
         label.textAlignment = .center
-        label.text = "Lunedì 9 novembre"
         return label
     }()
     
