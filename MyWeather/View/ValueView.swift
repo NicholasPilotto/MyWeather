@@ -45,8 +45,8 @@ class ValueView: UIView {
         self.addSubview(valueLabel)
         self.addSubview(infoLabel)
         
-        icon.frame = CGRect(x: (self.width / 2) - 15, y: 0, width: 30, height: 30)
-        valueLabel.frame = CGRect(x: 0, y: icon.bottom + 5, width: self.width, height: 20)
-        infoLabel.frame = CGRect(x: 0, y: valueLabel.bottom + 5, width: self.width, height: 20)
+        icon.anchor(self.topAnchor, left: self.centerXAnchor, bottom: nil, right: nil, topConstant: 0, leftConstant: -15, bottomConstant: 0, rightConstant: 0, widthConstant: 30, heightConstant: 30)
+        valueLabel.anchor(icon.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 5, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 20)
+        infoLabel.anchor(valueLabel.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 5, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 20)
     }
 }

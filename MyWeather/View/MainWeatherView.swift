@@ -16,11 +16,14 @@ class MainWeatherView: UIView {
         label.font = .systemFont(ofSize: 30, weight: .bold)
         label.textColor = .white
         label.textAlignment = .center
+        label.text = "Città"
         return label
     }()
     
     private let weatherImage: UIImageView = {
         let image = UIImageView()
+        image.tintColor = .white
+        image.image = UIImage(named: "day-sunny-icon")?.withRenderingMode(.alwaysTemplate)
         image.tintColor = .white
         return image
     }()
@@ -30,6 +33,7 @@ class MainWeatherView: UIView {
         label.font = .systemFont(ofSize: 55, weight: .heavy)
         label.textColor = .white
         label.textAlignment = .center
+        label.text = "20C"
         return label
     }()
     
@@ -38,6 +42,7 @@ class MainWeatherView: UIView {
         label.font = .systemFont(ofSize: 25, weight: .regular)
         label.textColor = .white
         label.textAlignment = .center
+        label.text = "Soleggiato"
         return label
     }()
     
@@ -46,6 +51,7 @@ class MainWeatherView: UIView {
         label.font = .systemFont(ofSize: 15, weight: .regular)
         label.textColor = .white.withAlphaComponent(0.8)
         label.textAlignment = .center
+        label.text = "Martedì 10 novembre"
         return label
     }()
     
@@ -86,20 +92,21 @@ class MainWeatherView: UIView {
     }
     
     private func addGraphicsObjects() {
-        cityLabel.frame = CGRect(x: 0, y: 18, width: self.frame.width, height: 30)
-        weatherImage.frame = CGRect(x: (self.frame.width / 2) - 75, y: 18 + 30 + 75, width: 150, height: 150)
-        temperatureLabel.frame = CGRect(x: 0, y: 18 + 30 + 75 + 150 + 45, width: self.frame.width, height: 60)
-        weatherLabel.frame = CGRect(x: 0, y: 18 + 30 + 75 + 150 + 45 + 60 + 5, width: self.frame.width, height: 30)
-        dateLabel.frame = CGRect(x: 0, y: 18 + 30 + 75 + 150 + 45 + 60 + 5 + 30, width: self.frame.width, height: 20)
-        infoStack.frame = CGRect(x: 10, y: self.bottom - 175, width: self.width - 20, height: 80)
-        addInfoView()
-        
         self.addSubview(cityLabel)
         self.addSubview(weatherImage)
         self.addSubview(temperatureLabel)
         self.addSubview(weatherLabel)
         self.addSubview(dateLabel)
         self.addSubview(infoStack)
+        
+        cityLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 18, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 30)
+        weatherImage.anchor(cityLabel.bottomAnchor, left: self.centerXAnchor, bottom: nil, right: nil, topConstant: 75, leftConstant: -75, bottomConstant: 0, rightConstant: 0, widthConstant: 150, heightConstant: 150)
+        temperatureLabel.anchor(weatherImage.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 45, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 60)
+        weatherLabel.anchor(temperatureLabel.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 5, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 30)
+        dateLabel.anchor(weatherLabel.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 5, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 20)
+        infoStack.anchor(nil, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 25, rightConstant: 0, widthConstant: 0, heightConstant: 80)
+        addInfoView()
+        
     }
     
     public func addInfoView() {
