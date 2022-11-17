@@ -16,14 +16,12 @@ class MainWeatherView: UIView {
         label.font = .systemFont(ofSize: 30, weight: .bold)
         label.textColor = .white
         label.textAlignment = .center
-        label.text = "Città"
         return label
     }()
     
     private let weatherImage: UIImageView = {
         let image = UIImageView()
         image.tintColor = .white
-        image.image = UIImage(named: "day-sunny-icon")?.withRenderingMode(.alwaysTemplate)
         image.tintColor = .white
         return image
     }()
@@ -33,7 +31,6 @@ class MainWeatherView: UIView {
         label.font = .systemFont(ofSize: 55, weight: .heavy)
         label.textColor = .white
         label.textAlignment = .center
-        label.text = "20C"
         return label
     }()
     
@@ -42,7 +39,6 @@ class MainWeatherView: UIView {
         label.font = .systemFont(ofSize: 25, weight: .regular)
         label.textColor = .white
         label.textAlignment = .center
-        label.text = "Soleggiato"
         return label
     }()
     
@@ -51,7 +47,6 @@ class MainWeatherView: UIView {
         label.font = .systemFont(ofSize: 15, weight: .regular)
         label.textColor = .white.withAlphaComponent(0.8)
         label.textAlignment = .center
-        label.text = "Martedì 10 novembre"
         return label
     }()
     
@@ -59,7 +54,7 @@ class MainWeatherView: UIView {
         let stack = UIStackView()
         stack.axis = .horizontal
         stack.distribution = .fillEqually
-        stack.alignment = .center
+
         stack.spacing = 10
         return stack
     }()
@@ -79,7 +74,7 @@ class MainWeatherView: UIView {
 
         self.gradientLayer.colors = [colorTop, colorBottom]
         self.gradientLayer.locations = [0.0, 1.0]
-        self.gradientLayer.frame = self.bounds
+        gradientLayer.frame = self.bounds
 
         self.layer.insertSublayer(gradientLayer, at: 0)
     }
@@ -100,11 +95,13 @@ class MainWeatherView: UIView {
         self.addSubview(infoStack)
         
         cityLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 18, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 30)
-        weatherImage.anchor(cityLabel.bottomAnchor, left: self.centerXAnchor, bottom: nil, right: nil, topConstant: 75, leftConstant: -75, bottomConstant: 0, rightConstant: 0, widthConstant: 150, heightConstant: 150)
-        temperatureLabel.anchor(weatherImage.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 45, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 60)
-        weatherLabel.anchor(temperatureLabel.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 5, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 30)
-        dateLabel.anchor(weatherLabel.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 5, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 20)
+        weatherImage.anchor(cityLabel.bottomAnchor, left: self.centerXAnchor, bottom: nil, right: nil, topConstant: 15, leftConstant: -50, bottomConstant: 0, rightConstant: 0, widthConstant: 100, heightConstant: 100)
+        
         infoStack.anchor(nil, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 25, rightConstant: 0, widthConstant: 0, heightConstant: 80)
+        dateLabel.anchor(nil, left: self.leftAnchor, bottom: infoStack.topAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 50, rightConstant: 0, widthConstant: 0, heightConstant: 20)
+        weatherLabel.anchor(nil, left: self.leftAnchor, bottom: dateLabel.topAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 5, rightConstant: 0, widthConstant: 0, heightConstant: 30)
+        
+        temperatureLabel.anchor(nil, left: self.leftAnchor, bottom: weatherLabel.topAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 5, rightConstant: 0, widthConstant: 0, heightConstant: 60)
         addInfoView()
         
     }

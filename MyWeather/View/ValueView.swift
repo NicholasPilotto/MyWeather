@@ -11,6 +11,7 @@ class ValueView: UIView {
 
     private let icon: UIImageView = {
         let image = UIImageView()
+        image.tintColor = .white
         return image
     }()
     
