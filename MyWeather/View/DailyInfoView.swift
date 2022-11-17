@@ -11,7 +11,7 @@ class DailyInfoView: UIView {
     
     let temperatureLabel: UILabel = {
         let label = UILabel()
-        label.tintColor = .white
+        label.textColor = .white
         label.font = .systemFont(ofSize: 12, weight: .bold)
         label.textAlignment = .center
         return label
@@ -25,7 +25,7 @@ class DailyInfoView: UIView {
     
     let hourLabel: UILabel = {
         let label = UILabel()
-        label.tintColor = .white.withAlphaComponent(0.8)
+        label.textColor = .white.withAlphaComponent(0.8)
         label.font = .systemFont(ofSize: 10, weight: .bold)
         label.textAlignment = .center
         return label
@@ -33,6 +33,7 @@ class DailyInfoView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupUI()
     }
     
     required init?(coder: NSCoder) {
@@ -45,8 +46,8 @@ class DailyInfoView: UIView {
         self.addSubview(hourLabel)
         
         temperatureLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 15)
-        weatherIcon.anchor(temperatureLabel.bottomAnchor, left: self.centerXAnchor, bottom: nil, right: nil, topConstant: 0, leftConstant: -15, bottomConstant: 0, rightConstant: 0, widthConstant: 30, heightConstant: 30)
-        hourLabel.anchor(weatherIcon.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 12)
+        weatherIcon.anchor(temperatureLabel.bottomAnchor, left: self.centerXAnchor, bottom: nil, right: nil, topConstant: 5, leftConstant: -15, bottomConstant: 0, rightConstant: 0, widthConstant: 30, heightConstant: 30)
+        hourLabel.anchor(weatherIcon.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 5, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 12)
     }
 
 }

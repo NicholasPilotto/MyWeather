@@ -54,7 +54,6 @@ class MainWeatherView: UIView {
         let stack = UIStackView()
         stack.axis = .horizontal
         stack.distribution = .fillEqually
-
         stack.spacing = 10
         return stack
     }()
