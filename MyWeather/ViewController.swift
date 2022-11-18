@@ -18,6 +18,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     private var latitude: CLLocationDegrees = 0
     private var longitude: CLLocationDegrees = 0
     
+    private var url: URL?
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -28,6 +30,26 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+        
+    }
+    
+    private func createURL() {
+        
+        let date = Date.now
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        let today = dateFormatter.string(from: date)
+        
+        url = URLBuilder().latitude(latitude: latitude)
+            .longitude(longitude: longitude)
+            .hourly(hourly: ["temperature_2m", "relativehumidity_2m", "precipitation", "rain"])
+            .daily(dayly: ["weathercode", "temperature_2m_max", "temperature_2m_min", "sunrise", "sunset"])
+            .currentWeather(current: true)
+            .timezone(timezone: "Europe/Rome")
+            .startDate(start: today)
+            .endDate(end: today)
+            .build()
     }
     
     override func viewDidLayoutSubviews() {
@@ -49,6 +71,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         latitude = location.coordinate.latitude
         longitude = location.coordinate.longitude
+        
+        createURL()
         
         locationManager.stopUpdatingLocation()
     }

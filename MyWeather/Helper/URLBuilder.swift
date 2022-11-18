@@ -31,33 +31,33 @@ public class URLBuilder {
 
     public func hourly(hourly: [String]) -> URLBuilder {
         let joinedHourly = hourly.joined(separator: ",")
-        url.append(joinedHourly + "&")
+        url.append("hourly=" + joinedHourly + "&")
         return self
     }
     
     public func daily(dayly: [String]) -> URLBuilder {
         let joinedDayly = dayly.joined(separator: ",")
-        url.append(joinedDayly + "&")
+        url.append("daily=" + joinedDayly + "&")
         return self
     }
     
     public func currentWeather(current: Bool) -> URLBuilder {
-        url.append("\(current)&")
+        url.append("current_weather=\(current)&")
         return self
     }
     
     public func timezone(timezone: String) -> URLBuilder {
-        url.append(timezone + "&")
+        url.append("timezone=" + timezone + "&")
         return self
     }
     
-    public func startDate(start: Date) -> URLBuilder {
-        url.append("\(start)&")
+    public func startDate(start: String) -> URLBuilder {
+        url.append("start_date=" + start + "&")
         return self
     }
     
-    public func endDate(end: Date) -> URLBuilder {
-        url.append("\(end)&")
+    public func endDate(end: String) -> URLBuilder {
+        url.append("end_date=" + end + "&")
         return self
     }
     
