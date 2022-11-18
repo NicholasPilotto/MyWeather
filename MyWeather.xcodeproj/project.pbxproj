@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		501BD4382927C51B001B2CD1 /* MainViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501BD4372927C51B001B2CD1 /* MainViewViewModel.swift */; };
 		50255958292181DE007C41D3 /* MainWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50255957292181DE007C41D3 /* MainWeatherView.swift */; };
 		5025595A29218291007C41D3 /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5025595929218291007C41D3 /* UIColor+hex.swift */; };
 		50786EDE2907236400E10BF5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50786EDD2907236400E10BF5 /* AppDelegate.swift */; };
@@ -45,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		501BD4372927C51B001B2CD1 /* MainViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewViewModel.swift; sourceTree = "<group>"; };
 		50255957292181DE007C41D3 /* MainWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWeatherView.swift; sourceTree = "<group>"; };
 		5025595929218291007C41D3 /* UIColor+hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hex.swift"; sourceTree = "<group>"; };
 		50786EDA2907236400E10BF5 /* MyWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -179,6 +181,7 @@
 		50F716D0291453C600FBBA65 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				501BD4372927C51B001B2CD1 /* MainViewViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 			files = (
 				50255958292181DE007C41D3 /* MainWeatherView.swift in Sources */,
 				5025595A29218291007C41D3 /* UIColor+hex.swift in Sources */,
+				501BD4382927C51B001B2CD1 /* MainViewViewModel.swift in Sources */,
 				50AE7DAA2926F20F00FB384B /* SecondaryView.swift in Sources */,
 				50F716D92914664900FBBA65 /* URLBuilder.swift in Sources */,
 				50786EE22907236400E10BF5 /* ViewController.swift in Sources */,
