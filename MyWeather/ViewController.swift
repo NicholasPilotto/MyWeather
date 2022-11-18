@@ -50,7 +50,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         latitude = location.coordinate.latitude
         longitude = location.coordinate.longitude
         
-        print(latitude, longitude)
         locationManager.stopUpdatingLocation()
     }
     
