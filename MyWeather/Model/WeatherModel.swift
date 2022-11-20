@@ -11,9 +11,11 @@ struct WeatherModel: Codable {
     let latitude: Double
     let longitude: Double
     let elevation: Double
-    let hourlyUnits: Units
+    let hourly_units: Units
     let hourly : WeatherData
     let daily: Daily
+    let daily_units: DailyUnits
+    let current_weather: CurrentWeather
 }
 
 struct CurrentWeather: Codable {
@@ -23,26 +25,31 @@ struct CurrentWeather: Codable {
 }
 
 struct Units: Codable {
-    let time: [String]
-    let temperature2m: String
-    let relaviveHumidity2m: String
+    let temperature_2m: String
+    let relativehumidity_2m: String
     let precipitation: String
     let rain: String
-    let windspeed10m: String
+    let windspeed_10m: String
 }
 
 struct WeatherData: Codable {
     let time: [String]
-    let temperature2m: [Double]
-    let relativeHumidity2m: [Int]
+    let temperature_2m: [Double]
+    let relativehumidity_2m: [Int]
     let precipitation: [Double]
     let rain: [Double]
-    let windspeed10m: [Double]
+    let windspeed_10m: [Double]
 }
 
 struct Daily: Codable {
-    let temperature2mMax: [Double]
-    let temperature2mMin: [Double]
-    let sunrise: [Date]
-    let sunset: [Date]
+    let temperature_2m_max: [Double]
+    let temperature_2m_min: [Double]
+    let sunrise: [String]
+    let sunset: [String]
+}
+
+struct DailyUnits: Codable {
+    let temperature_2m_max: String
+    let temperature_2m_min: String
+    let weathercode: String
 }

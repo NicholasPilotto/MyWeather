@@ -34,6 +34,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        request()
+    }
+    
+    private func request() {             
+        Service.shared.fetch(url: url) { result in
+            switch result {
+            case .success(let success):
+                print(success)
+                break
+            case .failure(let failure):
+                print(failure)
+                break
+            }
+        }
     }
     
     private func createURL() {
@@ -46,7 +60,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         url = URLBuilder().latitude(latitude: latitude)
             .longitude(longitude: longitude)
-            .hourly(hourly: ["temperature_2m", "relativehumidity_2m", "precipitation", "rain"])
+            .hourly(hourly: ["temperature_2m", "relativehumidity_2m", "precipitation", "rain", "windspeed_10m"])
             .daily(dayly: ["weathercode", "temperature_2m_max", "temperature_2m_min", "sunrise", "sunset"])
             .currentWeather(current: true)
             .timezone(timezone: "Europe/Rome")
@@ -74,6 +88,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         latitude = location.coordinate.latitude
         longitude = location.coordinate.longitude
+        
+        createURL()
+        request()
         
         locationManager.stopUpdatingLocation()
     }

@@ -19,7 +19,7 @@ class Service {
     
     private init() {}
     
-    public static func fetch(url: URL?, completion: @escaping (Result<WeatherModel, ServiceError>) -> Void) {
+    public func fetch(url: URL?, completion: @escaping (Result<WeatherModel, ServiceError>) -> Void) {
         guard let url = url else {
             completion(.failure(.invalidURL))
             return
@@ -37,7 +37,8 @@ class Service {
             }
             
             do {
-                let json = try JSONDecoder().decode(WeatherModel.self, from: data)
+                let decoder = JSONDecoder()
+                let json = try decoder.decode(WeatherModel.self, from: data)
                 completion(.success(json))
             } catch {
                 completion(.failure(.badJSONParsing))
