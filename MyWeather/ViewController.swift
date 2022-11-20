@@ -23,14 +23,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-        
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
     
     private func createURL() {
@@ -71,8 +74,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         latitude = location.coordinate.latitude
         longitude = location.coordinate.longitude
-        
-        createURL()
         
         locationManager.stopUpdatingLocation()
     }
