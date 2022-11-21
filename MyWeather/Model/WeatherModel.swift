@@ -39,6 +39,7 @@ struct WeatherData: Codable {
     let precipitation: [Double]
     let rain: [Double]
     let windspeed_10m: [Double]
+    let weathercode: [Int]
 }
 
 struct Daily: Codable {

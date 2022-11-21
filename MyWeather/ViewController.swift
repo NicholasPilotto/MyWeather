@@ -60,13 +60,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         url = URLBuilder().latitude(latitude: latitude)
             .longitude(longitude: longitude)
-            .hourly(hourly: ["temperature_2m", "relativehumidity_2m", "precipitation", "rain", "windspeed_10m"])
-            .daily(dayly: ["weathercode", "temperature_2m_max", "temperature_2m_min", "sunrise", "sunset"])
+            .hourly(hourly: ["weathercode", "temperature_2m", "relativehumidity_2m", "precipitation", "rain", "windspeed_10m"])
+            .daily(daily: ["weathercode", "temperature_2m_max", "temperature_2m_min", "sunrise", "sunset"])
             .currentWeather(current: true)
             .timezone(timezone: "Europe/Rome")
             .startDate(start: today)
             .endDate(end: today)
             .build()
+    
     }
     
     override func viewDidLayoutSubviews() {

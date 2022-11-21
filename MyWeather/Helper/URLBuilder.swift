@@ -35,9 +35,9 @@ public class URLBuilder {
         return self
     }
     
-    public func daily(dayly: [String]) -> URLBuilder {
-        let joinedDayly = dayly.joined(separator: ",")
-        url.append("daily=" + joinedDayly + "&")
+    public func daily(daily: [String]) -> URLBuilder {
+        let joinedDaily = daily.joined(separator: ",")
+        url.append("daily=" + joinedDaily + "&")
         return self
     }
     
@@ -63,6 +63,7 @@ public class URLBuilder {
     
     public func build() -> URL? {
         url.removeLast()
+        print(url)
         return URL(string: url)
     }
 }
