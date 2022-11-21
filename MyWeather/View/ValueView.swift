@@ -9,7 +9,7 @@ import UIKit
 
 class ValueView: UIView {
 
-    private let icon: UIImageView = {
+    private var icon: UIImageView = {
         let image = UIImageView()
         image.tintColor = .white
         return image
@@ -49,6 +49,10 @@ class ValueView: UIView {
         icon.anchor(self.topAnchor, left: self.centerXAnchor, bottom: nil, right: nil, topConstant: 0, leftConstant: -15, bottomConstant: 0, rightConstant: 0, widthConstant: 30, heightConstant: 30)
         valueLabel.anchor(icon.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 5, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 20)
         infoLabel.anchor(valueLabel.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 5, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 20)
+    }
+    
+    public func setIcon(icon: String) {
+        self.icon.image = UIImage(named: icon)?.withRenderingMode(.alwaysTemplate)
     }
 
 }

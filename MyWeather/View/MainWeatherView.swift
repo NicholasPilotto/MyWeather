@@ -107,8 +107,11 @@ class MainWeatherView: UIView {
     
     public func addInfoView() {
         let windInfoView = ValueView()
+        windInfoView.setIcon(icon: "wind")
         let humidityInfoView = ValueView()
+        humidityInfoView.setIcon(icon: "humidity")
         let rainInfoView = ValueView()
+        rainInfoView.setIcon(icon: "drop")
         
         infoStack.addArrangedSubview(windInfoView)
         infoStack.addArrangedSubview(humidityInfoView)
