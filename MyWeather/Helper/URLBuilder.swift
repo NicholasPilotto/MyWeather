@@ -63,7 +63,6 @@ public class URLBuilder {
     
     public func build() -> URL? {
         url.removeLast()
-        print(url)
         return URL(string: url)
     }
 }

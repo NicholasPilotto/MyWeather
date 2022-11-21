@@ -51,7 +51,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     private func createURL() {
-        
         let date = Date.now
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
