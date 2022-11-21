@@ -11,7 +11,16 @@ class MainWeatherView: UIView {
     
     private var gradientLayer = CAGradientLayer()
     
-    private let cityLabel: UILabel = {
+    private var viewModel: MainViewViewModel!  {
+        willSet {
+            DispatchQueue.main.async {
+                self.cityLabel.text = newValue.city
+                self.weatherImage.image = UIImage(named: newValue.weatherImage)
+            }
+        }
+    }
+    
+    @objc private dynamic var cityLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 30, weight: .bold)
         label.textColor = .white
@@ -116,5 +125,14 @@ class MainWeatherView: UIView {
         infoStack.addArrangedSubview(windInfoView)
         infoStack.addArrangedSubview(humidityInfoView)
         infoStack.addArrangedSubview(rainInfoView)
+    }
+    
+    public func configure(viewModel: MainViewViewModel) {
+        self.viewModel = viewModel
+        cityLabel.text = "Ciao"
+//        DispatchQueue.main.async {
+//            self.cityLabel.text = viewModel.city
+//            self.weatherImage.image = UIImage(named: viewModel.weatherImage)
+//        }
     }
 }
