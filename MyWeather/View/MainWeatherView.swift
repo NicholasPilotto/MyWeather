@@ -11,6 +11,10 @@ class MainWeatherView: UIView {
     
     private var gradientLayer = CAGradientLayer()
     
+    override class var layerClass: Swift.AnyClass {
+        return CAGradientLayer.self
+    }
+    
     private let cityLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 30, weight: .bold)
@@ -76,11 +80,14 @@ class MainWeatherView: UIView {
         let colorTop = UIColor(rgb: 0x15C1F4).cgColor
         let colorBottom = UIColor(rgb: 0x1182FA).cgColor
 
-        self.gradientLayer.colors = [colorTop, colorBottom]
-        self.gradientLayer.locations = [0.0, 1.0]
-        gradientLayer.frame = self.bounds
+//        self.gradientLayer.colors = [colorTop, colorBottom]
+//        self.gradientLayer.locations = [0.0, 1.0]
+        (self.layer as? CAGradientLayer)?.colors = [colorTop, colorBottom]
+        (self.layer as? CAGradientLayer)?.locations = [0.0, 1.0]
+        (self.layer as? CAGradientLayer)?.frame = self.bounds
+//        gradientLayer.frame = self.bounds
 
-        self.layer.insertSublayer(gradientLayer, at: 0)
+//        self.layer.insertSublayer(gradientLayer, at: 0)
     }
     
     private func setupUI() {
@@ -126,6 +133,7 @@ class MainWeatherView: UIView {
     public func configure(viewModel: MainViewViewModel) {
         self.cityLabel.text = viewModel.city
         self.temperatureLabel.text = "\(viewModel.temperature)" + viewModel.temperatureUnit
+        self.weatherImage.image = UIImage(named: viewModel.weatherImage)?.withRenderingMode(.alwaysTemplate)
         self.dateLabel.text = viewModel.date
         self.weatherLabel.text = viewModel.weather
     }
