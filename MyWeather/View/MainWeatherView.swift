@@ -11,20 +11,13 @@ class MainWeatherView: UIView {
     
     private var gradientLayer = CAGradientLayer()
     
-    private var viewModel: MainViewViewModel!  {
-        willSet {
-            DispatchQueue.main.async {
-                self.cityLabel.text = newValue.city
-                self.weatherImage.image = UIImage(named: newValue.weatherImage)
-            }
-        }
-    }
-    
-    @objc private dynamic var cityLabel: UILabel = {
+    private let cityLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 30, weight: .bold)
         label.textColor = .white
         label.textAlignment = .center
+        label.text = "--"
+        label.numberOfLines = 0
         return label
     }()
     
@@ -40,6 +33,7 @@ class MainWeatherView: UIView {
         label.font = .systemFont(ofSize: 55, weight: .heavy)
         label.textColor = .white
         label.textAlignment = .center
+        label.text = "--"
         return label
     }()
     
@@ -48,6 +42,7 @@ class MainWeatherView: UIView {
         label.font = .systemFont(ofSize: 25, weight: .regular)
         label.textColor = .white
         label.textAlignment = .center
+        label.text = "--"
         return label
     }()
     
@@ -56,6 +51,7 @@ class MainWeatherView: UIView {
         label.font = .systemFont(ofSize: 15, weight: .regular)
         label.textColor = .white.withAlphaComponent(0.8)
         label.textAlignment = .center
+        label.text = "--"
         return label
     }()
     
@@ -128,11 +124,9 @@ class MainWeatherView: UIView {
     }
     
     public func configure(viewModel: MainViewViewModel) {
-        self.viewModel = viewModel
-        cityLabel.text = "Ciao"
-//        DispatchQueue.main.async {
-//            self.cityLabel.text = viewModel.city
-//            self.weatherImage.image = UIImage(named: viewModel.weatherImage)
-//        }
+        self.cityLabel.text = viewModel.city
+        self.temperatureLabel.text = "\(viewModel.temperature)" + viewModel.temperatureUnit
+        self.dateLabel.text = viewModel.date
+        self.weatherLabel.text = viewModel.weather
     }
 }
