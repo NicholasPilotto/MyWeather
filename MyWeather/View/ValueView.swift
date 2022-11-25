@@ -12,6 +12,7 @@ class ValueView: UIView {
     private var icon: UIImageView = {
         let image = UIImageView()
         image.tintColor = .white
+        image.contentMode = .scaleAspectFit
         return image
     }()
     
@@ -51,8 +52,10 @@ class ValueView: UIView {
         infoLabel.anchor(valueLabel.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 5, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 20)
     }
     
-    public func setIcon(icon: String) {
-        self.icon.image = UIImage(named: icon)?.withRenderingMode(.alwaysTemplate)
+    public func configure(viewModel: MainViewInfo) {
+        self.icon.image = UIImage(named: viewModel.infoIcon)?.withRenderingMode(.alwaysTemplate)
+        self.valueLabel.text = "\(viewModel.infoValue)" + viewModel.valueUnit
+        self.infoLabel.text = viewModel.infoName
     }
 
 }

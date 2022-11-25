@@ -19,7 +19,7 @@ struct MainViewViewModel {
 
 struct MainViewInfo {
     let infoIcon: String
-    let infoValue: Double
+    let infoValue: Any
     let valueUnit: String
     let infoName: String
 }

@@ -25,6 +25,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     private var today: String = ""
     
+    private let onceToken = NSUUID().uuidString
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -41,7 +43,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
     
     private func request() {
@@ -52,21 +53,24 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 }
                 switch result {
                 case .success(let success):
-//                    print(success)
-                    let codeConverted = WeatherCodeConverter.convert(code: success.current_weather.weathercode)
-                    let image = codeConverted.1 + "-" + codeConverted.0 + "-icon"
-                    
-                    let windMainInfo = MainViewInfo(infoIcon: "wind", infoValue: success.current_weather.windspeed, valueUnit: success.hourly_units.windspeed_10m, infoName: "wind")
-                    let humidityMainInfo = MainViewInfo(infoIcon: "drop", infoValue: success.current_weather.temperature, valueUnit: success.hourly_units.windspeed_10m, infoName: "humidity")
-                    let rainMainInfo = MainViewInfo(infoIcon: "rain", infoValue: success.current_weather.temperature, valueUnit: success.hourly_units.windspeed_10m, infoName: "wind")
-                    
-                    let info = [windMainInfo, humidityMainInfo, rainMainInfo]
-                    
-                    let formatted = Date().formatted(date: .long, time: .omitted)
-                    
-                    let mainWeatherViewModel = MainViewViewModel(city: "MyWeather", weatherImage: image, temperature: success.current_weather.temperature, temperatureUnit: success.hourly_units.temperature_2m, weather: codeConverted.2, date: formatted, info: info)
-                    
                     DispatchQueue.main.async {
+//                        print(success)
+                        let codeConverted = WeatherCodeConverter.convert(code: success.current_weather.weathercode)
+                        let image = codeConverted.1 + "-" + codeConverted.0 + "-icon"
+                        
+                        let solar = success.daily.sunrise[0].suffix(5) + "-" + success.daily.sunset[0].suffix(5)
+                        let maxMinTemp = "\(success.daily.temperature_2m_min[0])" + "/" + "\(success.daily.temperature_2m_max[0])" + success.daily_units.temperature_2m_max
+                        
+                        let windMainInfo = MainViewInfo(infoIcon: "wind", infoValue: success.current_weather.windspeed, valueUnit: success.hourly_units.windspeed_10m, infoName: "Vento")
+                        let humidityMainInfo = MainViewInfo(infoIcon: "sunrise-icon", infoValue: solar, valueUnit: "", infoName: "Ciclo solare")
+                        let rainMainInfo = MainViewInfo(infoIcon: "temperature-heat-icon", infoValue: maxMinTemp, valueUnit: "", infoName: "Min/Max")
+                        
+                        let info = [windMainInfo, humidityMainInfo, rainMainInfo]
+                        
+                        let formatted = Date().formatted(date: .long, time: .omitted)
+                        
+                        let mainWeatherViewModel = MainViewViewModel(city: "MyWeather", weatherImage: image, temperature: success.current_weather.temperature, temperatureUnit: success.hourly_units.temperature_2m, weather: codeConverted.2, date: formatted, info: info)
+                        
                         self.weatherView.configure(viewModel: mainWeatherViewModel)
                     }
                     break
@@ -116,8 +120,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         self.latitude = location.coordinate.latitude
         self.longitude = location.coordinate.longitude
         
-        createURL()
-        request()
+        DispatchQueue.once(token: onceToken) {
+            self.createURL()
+            self.request()
+        }
+    
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
