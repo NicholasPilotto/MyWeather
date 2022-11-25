@@ -27,6 +27,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     private let onceToken = NSUUID().uuidString
     
+    private var spinner = UIActivityIndicatorView()
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -35,14 +37,24 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         super.viewWillAppear(animated)
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.requestLocation()
-        
+        self.locationManager.delegate = self
+        self.locationManager.requestWhenInUseAuthorization()
+        self.locationManager.requestLocation()
+                
+        self.startSpinnerView()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    private func startSpinnerView() {
+        self.spinner.startAnimating()
+    }
+    
+    private func hideSpinnerView() {
+        self.spinner.stopAnimating()
+        self.spinner.removeFromSuperview()
     }
     
     private func request() {
@@ -72,6 +84,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                         let mainWeatherViewModel = MainViewViewModel(city: "MyWeather", weatherImage: image, temperature: success.current_weather.temperature, temperatureUnit: success.hourly_units.temperature_2m, weather: codeConverted.2, date: formatted, info: info)
                         
                         self.weatherView.configure(viewModel: mainWeatherViewModel)
+                        self.hideSpinnerView()
                     }
                     break
                 case .failure(let failure):
@@ -106,6 +119,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         self.view.addSubview(weatherView)
         self.view.addSubview(dailyView)
+        
+        self.spinner.clipsToBounds = true
+        self.spinner.layer.cornerRadius = 15
+        self.spinner.backgroundColor = .systemBackground.withAlphaComponent(0.8)
+        
+        self.view.addSubview(spinner)
+        
+        self.spinner.anchor(self.view.centerYAnchor, left: self.view.centerXAnchor, bottom: nil, right: nil, topConstant: -50, leftConstant: -50, bottomConstant: 0, rightConstant: 0, widthConstant: 100, heightConstant: 100)
         
         weatherView.anchor(self.view.safeAreaLayoutGuide.topAnchor, left: self.view.leftAnchor, bottom: nil, right: self.view.rightAnchor, topConstant: 10, leftConstant: 20, bottomConstant: 0, rightConstant: 20, widthConstant: 0, heightConstant: self.view.frame.height * 2/3)
         dailyView.anchor(weatherView.bottomAnchor, left: self.view.leftAnchor, bottom: self.view.bottomAnchor, right: self.view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
