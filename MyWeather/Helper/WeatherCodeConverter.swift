@@ -9,7 +9,7 @@ import Foundation
 
 
 final class WeatherCodeConverter {
-    public static func convert(code: Int) -> (String, String) {
+    public static func convert(code: Int) -> (String, String, String) {
         
         let hour = Calendar.current.component(.hour, from: Date.now)
         
@@ -17,21 +17,21 @@ final class WeatherCodeConverter {
         
         switch code {
         case 0:
-            return ("clear", period)
+            return ("clear", period, "Soleggiato")
         case 1, 2, 3:
-            return ("cloudy", period)
+            return ("cloudy", period, "Nuvoloso")
         case 45, 48:
-            return ("foggy", period)
+            return ("foggy", period, "Nebbia")
         case 51, 53, 55:
-            return ("drizzle", period)
+            return ("drizzle", period, "Pioggerellina")
         case 61, 63, 65:
-            return ("rain", period)
+            return ("rain", period, "Pioggia")
         case 71, 73, 75:
-            return ("snow", period)
+            return ("snow", period, "Neve")
         case 80, 81, 82:
-            return ("thunderstorm", period)
+            return ("thunderstorm", period, "Tempesta")
         default:
-            return ("clear", period)
+            return ("clear", period, "Soleggiato")
         }
     }
 }
