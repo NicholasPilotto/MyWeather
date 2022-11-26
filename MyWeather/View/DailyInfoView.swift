@@ -9,7 +9,7 @@ import UIKit
 
 class DailyInfoView: UIView {
     
-    let temperatureLabel: UILabel = {
+    private let temperatureLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
         label.font = .systemFont(ofSize: 12, weight: .bold)
@@ -17,13 +17,14 @@ class DailyInfoView: UIView {
         return label
     }()
     
-    let weatherIcon: UIImageView = {
+    private let weatherIcon: UIImageView = {
         let image = UIImageView()
         image.tintColor = .white
+        image.contentMode = .scaleAspectFit
         return image
     }()
     
-    let hourLabel: UILabel = {
+    private let hourLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white.withAlphaComponent(0.8)
         label.font = .systemFont(ofSize: 10, weight: .bold)
@@ -49,5 +50,10 @@ class DailyInfoView: UIView {
         weatherIcon.anchor(temperatureLabel.bottomAnchor, left: self.centerXAnchor, bottom: nil, right: nil, topConstant: 5, leftConstant: -15, bottomConstant: 0, rightConstant: 0, widthConstant: 30, heightConstant: 30)
         hourLabel.anchor(weatherIcon.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 5, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 12)
     }
-
+    
+    public func configure(viewModel: SecondaryViewViewModel) {
+        self.temperatureLabel.text = "\(viewModel.temperature)\(viewModel.temperatureUnit)"
+        self.weatherIcon.image = UIImage(named: viewModel.iconImage)?.withRenderingMode(.alwaysTemplate)
+        self.hourLabel.text = viewModel.time
+    }
 }

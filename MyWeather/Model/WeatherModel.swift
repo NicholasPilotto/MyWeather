@@ -22,6 +22,7 @@ struct CurrentWeather: Codable {
     let temperature: Double
     let windspeed: Double
     let weathercode: Int
+    let time: String
 }
 
 struct Units: Codable {

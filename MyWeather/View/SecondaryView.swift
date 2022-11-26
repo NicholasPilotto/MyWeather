@@ -41,18 +41,15 @@ class SecondaryView: UIView {
         
         todayLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 5, leftConstant: 22, bottomConstant: 0, rightConstant: 22, widthConstant: 0, heightConstant: 25)
         infoStack.anchor(todayLabel.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 20, leftConstant: 22, bottomConstant: 0, rightConstant: 22, widthConstant: 0, heightConstant: 85)
-        
-        let a = DailyInfoView()
-        let s = DailyInfoView()
-        let d = DailyInfoView()
-        let f = DailyInfoView()
-        let g = DailyInfoView()
-        
-        infoStack.addArrangedSubview(a)
-        infoStack.addArrangedSubview(s)
-        infoStack.addArrangedSubview(d)
-        infoStack.addArrangedSubview(f)
-        infoStack.addArrangedSubview(g)
+    }
+    
+    public func configure(viewModels: [SecondaryViewViewModel]) {
+        for element in viewModels {
+            let view = DailyInfoView()
+            view.configure(viewModel: element)
+            
+            infoStack.addArrangedSubview(view)
+        }
     }
     
 }

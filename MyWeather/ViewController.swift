@@ -81,9 +81,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                         
                         let formatted = Date().formatted(date: .long, time: .omitted)
                         
+                        let hourlyIndex = success.hourly.time.firstIndex(of: "\(self.today)T\(success.current_weather.time.suffix(5))") ?? 0
+                        var secondaryViewViewModel = [SecondaryViewViewModel]()
+                        
+                        for i in (hourlyIndex + 1)...(hourlyIndex + 5) {
+                            let converted = WeatherCodeConverter.convert(code: success.hourly.weathercode[i])
+                            secondaryViewViewModel.append(SecondaryViewViewModel(temperature: success.hourly.temperature_2m[i], temperatureUnit: success.hourly_units.temperature_2m, iconImage: "\(converted.1)-\(converted.0)-icon", time: String(success.hourly.time[i].suffix(5))))
+                        }
+                        
                         let mainWeatherViewModel = MainViewViewModel(city: "MyWeather", weatherImage: image, temperature: success.current_weather.temperature, temperatureUnit: success.hourly_units.temperature_2m, weather: codeConverted.2, date: formatted, info: info)
                         
                         self.weatherView.configure(viewModel: mainWeatherViewModel)
+                        self.dailyView.configure(viewModels: secondaryViewViewModel)
                         self.hideSpinnerView()
                     }
                     break
